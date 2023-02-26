@@ -10,7 +10,7 @@ type IBlog = {
 
 export const blogApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com",
+    baseUrl: "https://jsonplaceholder.typicode.com/posts/",
   }),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
@@ -21,7 +21,7 @@ export const blogApi = createApi({
   endpoints: (builder) => ({
     // Query: Get All blog
     getBlogs: builder.query<IBlog ,void>({
-      query: () => `posts`,
+      query: () => ``,
       providesTags: (result) =>
         result
           ? [
@@ -33,10 +33,10 @@ export const blogApi = createApi({
             ]
           : [{ type: 'Blogs', id: 'LIST' }],
     }),
-     // ? Query: Get a single blog
+     // Query: Get a single blog
      getBlogById: builder.query<IBlog, string>({
         query(id) {
-          return `posts/${id}`;
+          return `${id}`;
         },
         providesTags: (result, error, id) => [{ type: 'Blogs', id }],
       }),
