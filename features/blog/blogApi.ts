@@ -1,16 +1,16 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { HYDRATE } from "next-redux-wrapper";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { HYDRATE } from 'next-redux-wrapper';
 
 type IBlog = {
-    userId: string;
-    id: string;
-    title: string;
-    body: string;
-  };
+  userId: string;
+  id: string;
+  title: string;
+  body: string;
+};
 
 export const blogApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com/posts/",
+    baseUrl: 'https://jsonplaceholder.typicode.com/posts/',
   }),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
@@ -20,7 +20,7 @@ export const blogApi = createApi({
   tagTypes: ['Blogs'],
   endpoints: (builder) => ({
     // Query: Get All blog
-    getBlogs: builder.query<IBlog ,void>({
+    getBlogs: builder.query<IBlog, void>({
       query: () => ``,
       providesTags: (result) =>
         result
@@ -33,20 +33,20 @@ export const blogApi = createApi({
             ]
           : [{ type: 'Blogs', id: 'LIST' }],
     }),
-     // Query: Get a single blog
-     getBlogById: builder.query<IBlog, string>({
-        query(id) {
-          return `${id}`;
-        },
-        providesTags: (result, error, id) => [{ type: 'Blogs', id }],
-      }),
+    // Query: Get a single blog
+    getBlogById: builder.query<IBlog, string>({
+      query(id) {
+        return `${id}`;
+      },
+      providesTags: (result, error, id) => [{ type: 'Blogs', id }],
     }),
+  }),
 });
 
 // Export hooks for usage in functional components
 export const {
-     useGetBlogsQuery,
-     useGetBlogByIdQuery,
+  useGetBlogsQuery,
+  useGetBlogByIdQuery,
   util: { getRunningQueriesThunk },
 } = blogApi;
 

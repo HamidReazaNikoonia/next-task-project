@@ -1,0 +1,42 @@
+
+// Colors
+
+$color-body-bg: #f9f7f5;
+$color-text: #444;
+$color-heading-text: #35495e;
+
+
+$theme-color-primary: #522596;
+$theme-color-secondary: #605077;
+$theme-color-dark: #29282c;
+$theme-color-light: #d9caef;
+
+
+$color-link-text: #39a275;
+$color-link-text-active: $color-text;
+
+// Sizes
+
+$size-content-width-max: 50rem;
+$size-content-width-min: 25rem;
+
+$size-grid-padding: 1.3rem;
+$size-input-grid-vertical: 0.75em;
+$size-input-grid-horizontal: 1em;
+
+$size-padding-1x: 1.5rem;
+$size-padding-2x: 3rem;
+$size-padding-3x: 5rem;
+
+// Fonts
+
+$system-default-font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
+  'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  'Segoe UI Symbol';
+
+$heading-font-family: $system-default-font-family;
+$heading-font-weight: 600; 
+$heading-font-size: 1.9rem;
+
+$content-font-family: $system-default-font-family;
+$content-font-weight: 400;

@@ -1,0 +1,22 @@
+@import '../../styles/style-variables.scss';
+
+
+.header {
+    width: 100%;
+    /* Transition implemented for changing theme */
+    transition: all .5s;
+    padding: $size-padding-1x;
+    z-index: 9;
+    .header-content {
+      max-width: $size-content-width-max;
+      margin: 0 auto;
+      display: flex;
+    }
+    .header-title {
+        font-family: $heading-font-family;
+        font-weight: $heading-font-weight;
+        font-size: $heading-font-size;
+        padding: $size-padding-1x;
+    }
+  }
+

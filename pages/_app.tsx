@@ -1,28 +1,33 @@
 import React from 'react';
-import type { AppProps } from 'next/app'
-import { Provider } from "react-redux";
+import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
 
+// State (Context)
 import { ThemeContext } from '../lib/context/theme/theme-context';
+import { wrapper } from '../lib/store';
+import AppStore from '../lib/store';
 
-const { wrapper } = require("../lib/store");
+// Components
+import Header from '../layouts/Header';
 
 // Inject Styles
-import '../styles/globals.scss'
-import '../styles/home.scss'
+import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = React.useState('light');
-  const { store, props } = wrapper.useWrappedStore(pageProps);
+  const [theme, setTheme] = React.useState<string>('light');
+  const { store }: AppStore = wrapper.useWrappedStore(pageProps);
   return (
     <Provider store={store}>
       <div className={`theme-${theme}`}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Component {...pageProps} />
-      </ThemeContext.Provider>
+        <div className="layout">
+          <ThemeContext.Provider value={{ theme, setTheme }}>
+            <Header />
+            <Component {...pageProps} />
+          </ThemeContext.Provider>
+        </div>
       </div>
     </Provider>
-  )
+  );
 }
 
-export default MyApp
-
+export default MyApp;

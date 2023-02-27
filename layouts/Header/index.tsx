@@ -1,9 +1,11 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 import { FC, useContext } from 'react';
 import { ThemeContext } from '../../lib/context/theme/theme-context';
-// import logoIcon from '../images/logo-icon.png';
 
+// Component
+import ToggleButton from '../../components/ToggleButton';
 
+// Style
+import style from './style.module.scss';
 
 const Header: FC = () => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -13,21 +15,10 @@ const Header: FC = () => {
     setTheme(isCurrentDark ? 'light' : 'dark');
   };
   return (
-    <header className="header">
-      <div className="header-content">
-        <h2>Overreacted</h2>
-        <div className="toggle-btn-section">
-          <div className={`toggle-checkbox m-vertical-auto`}>
-            <input
-              className="toggle-btn__input"
-              type="checkbox"
-              name="checkbox"
-              onChange={handleThemeChange}
-              checked={theme === 'light'}
-            />
-            <button type="button" className={`toggle-btn__input-label`} onClick={handleThemeChange}></button>
-          </div>
-        </div>
+    <header className={style.header}>
+      <div className={style['header-content']}>
+        <h2 className={style['header-title']}>Overreacted</h2>
+        <ToggleButton theme={theme} handleChange={handleThemeChange} />
       </div>
     </header>
   );

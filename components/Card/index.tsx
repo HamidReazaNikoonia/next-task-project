@@ -1,33 +1,32 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
+// Styles
+import styles from './styles.module.scss';
 
-const defaultProps = {
-    body: false,
-  };
+type Variant = 'primary' | 'secondary' | 'dark' | 'light';
 
-export interface CardProps
-  extends React.HTMLAttributes<HTMLElement> {
-         /**
+export interface CardProps extends React.HTMLAttributes<HTMLElement> {
+  /**
    * Sets card background
    *
-   * @type {('primary'|'secondary'|'success'|'danger'|'warning'|'info'|'dark'|'light')}
+   * @type {('primary'|'secondary'|'dark'|'light')}
    */
-          bg?: string;
-  
-           /**
+  bg?: Variant;
+
+  /**
    * Sets card text color
    *
-   * @type {('primary'|'secondary'|'success'|'danger'|'warning'|'info'|'dark'|'light'|'white'|'muted')}
+   * @type {('primary'|'secondary'|'dark'|'light')}
    */
-  text?: string;
+  text?: Variant;
 
   /**
    * Sets card border color
    *
-   * @type {('primary'|'secondary'|'success'|'danger'|'warning'|'info'|'dark'|'light')}
+   * @type {('primary'|'secondary'|'dark'|'light')}
    */
-  border?: string;
+  border?: Variant;
 
   /**
    * When this prop is set, it creates a Card with a Card.Body inside
@@ -37,44 +36,36 @@ export interface CardProps
   as: React.ElementType;
 }
 
+const defaultProps = {
+  body: false,
+};
 
-
-const Card: React.ComponentPropsWithRef<'div', CardProps> = React.forwardRef<
-  HTMLElement,
-  CardProps
->(
-  (
-    {
-      className,
-      bg,
-      text,
-      border,
-      body,
-      children,
-      as: Component = 'div',
-      ...props
-    },
-    ref,
-  ) => {
-
-    return (
-      <Component
-        ref={ref}
-        {...props}
-        className={classNames(
-          className,
-          bg && `bg-${bg}`,
-          text && `text-${text}`,
-          border && `border-${border}`,
-        )}
-      >
-        {body ? <p>{children}</p> : children}
-      </Component>
-    );
-  },
-);
+const Card: React.FC<CardProps> = ({
+  className,
+  bg,
+  text,
+  border,
+  body,
+  children,
+  as: Component = 'div',
+  ...props
+}) => {
+  return (
+    <Component
+      {...props}
+      className={classNames(
+        className,
+        bg && styles[`bg-${bg}`],
+        text && styles[`text-${text}`],
+        border && (styles['border'], styles[`border-${border}`])
+      )}
+    >
+      {body ? <p>{children}</p> : children}
+    </Component>
+  );
+};
 
 Card.displayName = 'Card';
 Card.defaultProps = defaultProps;
 
-export default Card
+export default Card;

@@ -1,0 +1,12 @@
+
+@import '../../../styles/style-variables.scss';
+  
+  .container {
+    min-width: $size-content-width-min;
+    padding: $size-padding-3x $size-padding-2x;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

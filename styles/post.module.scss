@@ -1,0 +1,17 @@
+@import './theme-variables.scss';
+
+.postContainer {
+    padding: 1rem 2rem;
+    height: 100vh;
+    @include themify($themes) {
+        background: themed('headerFooterBackground');
+        padding: 3px;
+      }
+    .subTitle {
+        font-size: 0.7rem;
+        padding-bottom: 6rem;
+    }
+    .title {
+        text-align: center;
+    }
+}

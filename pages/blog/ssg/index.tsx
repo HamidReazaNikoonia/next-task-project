@@ -1,23 +1,18 @@
-import Home from "..";
+// State
+import { wrapper } from '../../../lib/store';
+import { getBlogs, getRunningQueriesThunk } from '../../../features/blog/blogApi';
 
-import {
-  getBlogs,
-  getRunningQueriesThunk,
-} from "../../../features/blog/blogApi";
-
-import { makeStore, wrapper } from "../../../lib/store";
-
+// Components
+import Home from '..';
 
 export default Home;
 
-export const getStaticProps = wrapper.getStaticProps(
-  (store) => async (context) => {
-      store.dispatch(getBlogs.initiate());
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(getBlogs.initiate());
 
-    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+  await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
-    return {
-      props: {},
-    };
-  }
-);
+  return {
+    props: {},
+  };
+});

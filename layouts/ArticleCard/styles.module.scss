@@ -1,7 +1,13 @@
-.title {
-    font-size: 2rem;
-}
+@import '../../styles/style-variables.scss';
 
-.cardContainer {
-    padding: 3rem 1rem
+.card-container-section {
+    padding: $size-padding-2x $size-padding-1x;
+    .card-title {
+        font-family: $heading-font-family;
+        font-weight: $heading-font-weight;
+        font-size: $heading-font-size;
+    }
+    .card-sub-title {
+      padding-bottom: $size-padding-1x;
+    }
 }

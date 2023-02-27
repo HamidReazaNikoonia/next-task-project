@@ -1,0 +1,49 @@
+@import '../../styles/style-variables.scss';
+
+.bg-primary {
+    background-color: $theme-color-primary;
+}
+.bg-secondary {
+    background-color: $theme-color-secondary;
+}
+.bg-dark {
+    background-color: $theme-color-dark;
+}
+.bg-light {
+    background-color: $theme-color-light;
+}
+
+
+.text-primary {
+    color: $theme-color-primary;
+}
+.text-secondary {
+    color: $theme-color-secondary;
+}
+.text-dark {
+    color: $theme-color-dark;
+}
+.text-light {
+    color: $theme-color-light;
+}
+
+.border {
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.border-primary {
+    border-color: $theme-color-primary; 
+}
+
+.border-secondary {
+    border-color: $theme-color-secondary; 
+}
+.border-dark {
+    border-color: $theme-color-dark; 
+}
+.border-light {
+    border-color: $theme-color-light; 
+}
+

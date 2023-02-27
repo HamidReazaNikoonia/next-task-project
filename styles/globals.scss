@@ -1,26 +1,11 @@
-:root {
-  --background: white;
-  --text-primary: black;
-  --text-secondary: royalblue;
-  --accent: purple;
-}
-
-[data-theme='dark'] {
-  --background: black;
-  --text-primary: white;
-  --text-secondary: grey;
-  --accent: darkred;
-}
+@import './theme-variables.scss';
+@import './style-variables.scss';
 
 html,
 body {
   padding: 0;
   margin: 0;
-  color: var(--text-primary);
-  background-color: var(--background);
-  transition: all .5s;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: $content-font-family;
 }
 
 a {
@@ -32,23 +17,23 @@ a {
   box-sizing: border-box;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.layout {
+  @include themify($themes) {
+    background: themed('headerFooterBackground');
+    color: themed('textColor');
   }
-  body {
-    color: white;
-    background: black;
-  }
-} */
-
-
-.title {
-  padding: 1rem 3rem
+  transition: all .5s;
+  display: inline-block;
+  height: auto;
 }
 
-.linkList li {
-  padding-bottom: 1.4rem;
+
+.home-link-title {
+  padding: ($size-input-grid-horizontal * 3) $size-input-grid-vertical;
+}
+
+.home-link-list li {
+  padding-bottom: $size-padding-1x;
   cursor: pointer;
-  color: blueviolet;
+  color: $color-link-text;
 }
