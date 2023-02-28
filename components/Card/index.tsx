@@ -33,7 +33,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
    * passing the children directly to it
    */
   body?: boolean;
-  as: React.ElementType;
+  as?: React.ElementType;
 }
 
 const defaultProps = {

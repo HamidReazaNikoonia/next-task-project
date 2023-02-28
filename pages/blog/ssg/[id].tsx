@@ -5,12 +5,60 @@ import { getBlogs, getBlogById, getRunningQueriesThunk } from '../../../features
 // Components
 import Post from '../[id]';
 
+export type FetchBaseQueryError =
+  | {
+      /**
+       * * `number`:
+       *   HTTP status code
+       */
+      status: number;
+      data: unknown;
+    }
+  | {
+      /**
+       * * `"FETCH_ERROR"`:
+       *   An error that occurred during execution of `fetch` or the `fetchFn` callback option
+       **/
+      status: 'FETCH_ERROR';
+      data?: undefined;
+      error: string;
+    }
+  | {
+      /**
+       * * `"PARSING_ERROR"`:
+       *   An error happened during parsing.
+       *   Most likely a non-JSON-response was returned with the default `responseHandler` "JSON",
+       *   or an error occurred while executing a custom `responseHandler`.
+       **/
+      status: 'PARSING_ERROR';
+      originalStatus: number;
+      data: string;
+      error: string;
+    }
+  | {
+      /**
+       * * `"CUSTOM_ERROR"`:
+       *   A custom error type that you can return from your `queryFn` where another error might not make sense.
+       **/
+      status: 'CUSTOM_ERROR';
+      data?: unknown;
+      error: string;
+    };
+
+type IBlog = {
+  userId: string;
+  id: string;
+  title: string;
+  body: string;
+};
+
 export async function getStaticPaths() {
   const store = makeStore();
-  const result = await store.dispatch(getBlogs.initiate());
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result: any = await store.dispatch(getBlogs.initiate());
 
   return {
-    paths: result?.data.map((p) => `/blog/ssg/${p.id}`).slice(0, 10),
+    paths: result?.data.map((p: IBlog) => `/blog/ssg/${p.id}`).slice(0, 10),
     fallback: true,
   };
 }

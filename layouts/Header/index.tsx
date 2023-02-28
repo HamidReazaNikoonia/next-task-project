@@ -10,7 +10,7 @@ import style from './style.module.scss';
 const Header: FC = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
-  const handleThemeChange = () => {
+  const handleThemeChange = (): void => {
     const isCurrentDark = theme === 'dark';
     setTheme(isCurrentDark ? 'light' : 'dark');
   };
@@ -18,7 +18,7 @@ const Header: FC = () => {
     <header className={style.header}>
       <div className={style['header-content']}>
         <h2 className={style['header-title']}>Overreacted</h2>
-        <ToggleButton theme={theme} handleChange={handleThemeChange} />
+        <ToggleButton theme={theme} handleClick={handleThemeChange} handleChange={handleThemeChange} />
       </div>
     </header>
   );

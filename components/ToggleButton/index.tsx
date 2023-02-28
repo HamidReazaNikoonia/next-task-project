@@ -4,22 +4,24 @@ import classNames from 'classnames';
 // Styles
 import styles from './styles.module.scss';
 
-export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface IToggleButton {
   /**
    * Sets theme selected.
    */
-  theme?: 'light' | 'dark';
+  theme?: string;
   /**
    * handleChange function for onChange event
    */
-  handleChange?: React.FormEventHandler<HTMLInputElement | HTMLButtonElement>;
+  handleChange?: React.ChangeEventHandler<HTMLInputElement>;
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
+  className?: string;
 }
 
 const defaultProps = {
   theme: 'light',
 };
 
-const ToggleButton: React.FC<ImageProps> = ({ className, theme, handleChange, ...props }) => {
+const ToggleButton: React.FC<IToggleButton> = ({ className, theme, handleClick, handleChange, ...props }) => {
   return (
     <div className={classNames(className, styles['toggle-btn-section'])}>
       <div className={classNames(styles['toggle-checkbox'], styles['m-vertical-auto'])}>
@@ -27,11 +29,11 @@ const ToggleButton: React.FC<ImageProps> = ({ className, theme, handleChange, ..
           className={styles['toggle-btn__input']}
           type="checkbox"
           name="checkbox"
-          onChange={() => handleChange()}
+          onChange={handleChange}
           checked={theme === 'light'}
           {...props}
         />
-        <button type="button" className={styles['toggle-btn__input-label']} onClick={() => handleChange()}></button>
+        <button type="button" className={styles['toggle-btn__input-label']} onClick={handleClick}></button>
       </div>
     </div>
   );

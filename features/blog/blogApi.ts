@@ -20,9 +20,9 @@ export const blogApi = createApi({
   tagTypes: ['Blogs'],
   endpoints: (builder) => ({
     // Query: Get All blog
-    getBlogs: builder.query<IBlog, void>({
+    getBlogs: builder.query<IBlog[], void>({
       query: () => ``,
-      providesTags: (result) =>
+      providesTags: (result: IBlog[] | undefined) =>
         result
           ? [
               ...result.map(({ id }) => ({

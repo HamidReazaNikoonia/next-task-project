@@ -47,5 +47,3 @@ This Project implemented in SSR and SSG
 ## Note
 
 1- In Small Project we could handles all state with context but because this is test project i used both (context and redux)
-
-2- Typeing not complete
